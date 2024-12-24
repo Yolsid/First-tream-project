@@ -5,7 +5,7 @@
 #include <windows.h>
 using namespace std;
 
-// Функция умножения больших чисел, представленных строками
+// Функция умножения больших чисел представленных строками
 string multiply(string x, string y) 
 {
     if (x == "0" || y == "0") 
@@ -60,8 +60,7 @@ string factorial(string n_str)
     return res;
 }
 
-// Функция вычисления суперфакториала (n!)!
-// Возвращает "ERROR" в случае ошибки
+// Функция вычисления факториала факториала
 string superfactorial(string n_str) {
     if (n_str.empty() || !all_of(n_str.begin(), n_str.end(), ::isdigit)) 
     {
@@ -75,7 +74,7 @@ string superfactorial(string n_str) {
     
     string n_factorial = factorial(n_str);
     
-    // дополнительная проверка, если результат факториала не корректен
+    //проверка если результат факториала не корректен
     if (n_factorial.rfind("ERROR", 0) == 0) 
     {
          return n_factorial;
@@ -89,26 +88,29 @@ int main()
     SetConsoleCP(1251);
     SetConsoleOutputCP(1251);
     cout << "Программа для вычисления (n!)!\n";
-    while (true) 
+    bool flag=true;
+    while (flag) 
     {
         string n_str;
         cout << "Введите неотрицательное целое число n (или 'exit' для выхода): ";
         cin >> n_str;
         if (n_str == "exit") 
         {
-            break;
+            flag=false;
         }
-         
-        string result = superfactorial(n_str);
-        if (result.rfind("ERROR", 0) == 0) 
+        if (flag)
         {
-           cerr << result;
-        } 
-        else 
-        {
-            cout << "Результат (" << n_str << "!)! = " << result << "\n";
+            string result = superfactorial(n_str);
+            if (result.rfind("ERROR", 0) == 0) 
+            {
+            cerr << result;
+            } 
+            else 
+            {
+                cout << "Результат (" << n_str << "!)! = " << result << "\n";
+            }
+            cout << "------------------------------\n";
         }
-        cout << "------------------------------\n";
     }
     return 0;
 }
